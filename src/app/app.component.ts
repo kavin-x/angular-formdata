@@ -22,9 +22,7 @@ export class AppComponent {
         type: 'line',
         xValueFormatString: 'YYYY',
         yValueFormatString: '$#,###.##',
-        dataPoints: [
-          {}
-        ],
+        dataPoints: this.test
 		
       },
     ],
@@ -45,28 +43,21 @@ export class AppComponent {
     this.selectedOption;
   }
 
-  async upload() {
+  upload() {
     if (this.file) {
-		
-		
-		this.test=[]
       this.uploadService
         .uploadfile(this.file, this.number, this.selectedOption)
         .subscribe((data) => {
           this.data = data;
-          console.log(data);
-
           this.data.forEach((e: { ds: any; yhat: any }) => {
-
             this.test.push({
               x: new Date(e.ds),
               y: e.yhat,
             });
           });
-          console.log(this.test);
 
           this.chartOptions = {
-            theme: 'light2',
+            theme: 'light1',
             animationEnabled: true,
             zoomEnabled: true,
             title: {
@@ -81,10 +72,12 @@ export class AppComponent {
               },
             ],
           };
-          alert('Uploaded');
+
         });
+        this.test=[]
     } else {
       alert('Please select a file first');
     }
   }
+  
 }
