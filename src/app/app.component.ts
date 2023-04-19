@@ -70,7 +70,7 @@ export class AppComponent {
             animationEnabled: true,
             zoomEnabled: true,
             title: {
-              text: 'Market Capitalization of ACME Corp',
+              text: 'Predicted Graph',
             },
             data: [
               {
